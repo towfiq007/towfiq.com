@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - Md. Towfiqur Rahman</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .notes-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+        }
+        
+        .notes-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .notes-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .notes-header p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-text);
+        }
+        
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .note-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .note-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .note-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .note-card:hover .note-image img {
+            transform: scale(1.05);
+        }
+        
+        .note-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .note-category {
+            display: inline-block;
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+        
+        .note-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+        
+        .note-excerpt {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+        
+        .note-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--light-text);
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .note-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .note-read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .note-read-more:hover {
+            color: var(--secondary-color);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .empty-state p {
+            color: var(--light-text);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .pagination a, .pagination span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+        }
+        
+        .pagination a:hover, .pagination .current {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .pagination .disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+        
+        .category-filter button {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-filter button:hover, .category-filter button.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .notes-container {
+                margin: 80px 15px 30px;
+                padding: 1rem;
+            }
+            
+            .notes-header h1 {
+                font-size: 2rem;
+            }
+            
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TR</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="bio.html">Bio</a></li>
+                <li><a href="notes.html" class="active">Notes</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="notes-container">
+        <div class="notes-header">
+            <h1>My Notes</h1>
+            <p>Collection of technical notes, tutorials, and personal insights on software development, cybersecurity, and technology trends.</p>
+        </div>
+        
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search notes...">
+        </div>
+        
+        <div class="category-filter">
+            <button class="active">All</button>
+            <button>Cybersecurity</button>
+            <button>Golang</button>
+            <button>Python</button>
+            <button>System Design</button>
+            <button>Cloud</button>
+            <button>DevOps</button>
+        </div>
+        
+        <div class="empty-state">
+            <i class="fas fa-sticky-note"></i>
+            <h3>No Notes Found</h3>
+            <p>I haven't published any notes yet. Check back soon for updates!</p>
+            <p>In the meantime, feel free to explore my <a href="blogs.html" style="color: var(--primary-color);">blog posts</a>.</p>
+        </div>
+        
+        <!-- Example note card (hidden for now) -->
+        <!--
+        <div class="notes-grid">
+            <div class="note-card">
+                <div class="note-image">
+                    <img src="assets/images/note-1.jpg" alt="Cybersecurity">
+                </div>
+                <div class="note-content">
+                    <span class="note-category">Cybersecurity</span>
+                    <h3 class="note-title">Understanding Zero Trust Architecture</h3>
+                    <p class="note-excerpt">A comprehensive guide to implementing Zero Trust security model in modern cloud environments.</p>
+                    <div class="note-meta">
+                        <span class="note-date"><i class="far fa-calendar"></i> May 15, 2025</span>
+                        <a href="#" class="note-read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note-card">
+                <div class="note-image">
+                    <img src="assets/images/note-2.jpg" alt="Golang">
+                </div>
+                <div class="note-content">
+                    <span class="note-category">Golang</span>
+                    <h3 class="note-title">Concurrency Patterns in Go</h3>
+                    <p class="note-excerpt">Exploring goroutines, channels, and common concurrency patterns in Go with practical examples.</p>
+                    <div class="note-meta">
+                        <span class="note-date"><i class="far fa-calendar"></i> April 28, 2025</span>
+                        <a href="#" class="note-read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note-card">
+                <div class="note-image">
+                    <img src="assets/images/note-3.jpg" alt="System Design">
+                </div>
+                <div class="note-content">
+                    <span class="note-category">System Design</span>
+                    <h3 class="note-title">Designing Scalable Microservices</h3>
+                    <p class="note-excerpt">Best practices and patterns for designing microservices that scale with your application.</p>
+                    <div class="note-meta">
+                        <span class="note-date"><i class="far fa-calendar"></i> April 10, 2025</span>
+                        <a href="#" class="note-read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pagination">
+            <a href="#" class="disabled"><i class="fas fa-chevron-left"></i></a>
+            <a href="#" class="current">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#"><i class="fas fa-chevron-right"></i></a>
+        </div>
+        -->
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Md. Towfiqur Rahman. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Category filter functionality
+        const filterButtons = document.querySelectorAll('.category-filter button');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Here you would typically filter the notes based on the selected category
+                // For now, we're just showing the empty state
+                // In a real implementation, you would fetch and display the filtered notes
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            // Here you would typically filter notes based on the search term
+            // For now, we're just logging the search term
+            console.log('Searching for:', searchTerm);
+        });
+    </script>
+</body>
+</html>

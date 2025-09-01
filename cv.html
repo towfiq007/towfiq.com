@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Md. Towfiqur Rahman</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        .cv-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .cv-header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        
+        .cv-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cv-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-info a {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+        
+        .cv-content {
+            padding: 2.5rem;
+        }
+        
+        .cv-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .cv-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            color: #2563eb;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .experience-item:last-child, 
+        .education-item:last-child,
+        .project-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .job-title, .degree, .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+        
+        .company, .university, .project-role {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .date-location {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: #6b7280;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .date-location i {
+            margin-right: 0.3rem;
+            color: #3b82f6;
+        }
+        
+        .job-description, .education-details, .project-description {
+            line-height: 1.7;
+            color: #4b5563;
+        }
+        
+        .job-description ul, .project-description ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 0.8rem;
+        }
+        
+        .job-description li, .project-description li {
+            position: relative;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .job-description li::before, .project-description li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-category {
+            flex: 1 1 300px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background-color: #e0e7ff;
+            color: #1e40af;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .publications-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .publication-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .publication-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .publication-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.3rem;
+        }
+        
+        .publication-authors, .publication-venue {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: 0.3rem;
+        }
+        
+        .publication-links a {
+            margin-right: 1rem;
+            font-size: 0.9rem;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        .publication-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .languages-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .language-name {
+            font-weight: 500;
+            color: #1f2937;
+        }
+        
+        .language-level {
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .download-btn-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #2563eb;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .download-btn:hover {
+            background-color: #1e40af;
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        @media print {
+            .download-btn-container {
+                display: none;
+            }
+            
+            .cv-container {
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .cv-container {
+                margin: 80px 15px 30px;
+            }
+            
+            .cv-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .cv-header h1 {
+                font-size: 2rem;
+            }
+            
+            .cv-content {
+                padding: 1.5rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TR</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="cv.html" class="active">CV</a></li>
+                <li><a href="bio.html">Bio</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="download-btn-container">
+        <button id="downloadPdf" class="download-btn">
+            <i class="fas fa-download"></i> Download as PDF
+        </button>
+    </div>
+
+    <div id="cv-content" class="cv-container">
+        <div class="cv-header">
+            <h1>Md. Towfiqur Rahman</h1>
+            <p>Software Engineering Team Lead | Cybersecurity Specialist</p>
+            
+            <div class="contact-info">
+                <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i> your.email@example.com</a>
+                <a href="tel:+8801XXXXXXXXX"><i class="fas fa-phone"></i> +8801XXXXXXXXX</a>
+                <a href="#" target="_blank"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+        
+        <div class="cv-content">
+            <div class="cv-section">
+                <h2 class="section-title">Professional Summary</h2>
+                <p>Results-driven Software Engineering Team Lead with over 8 years of progressive experience in software development, specializing in cybersecurity solutions. Adept at leading cross-functional teams in designing and implementing microservice-based SaaS platforms. Strong background in full-stack development, system architecture, and cloud technologies. Passionate about mentoring developers and implementing best practices in software engineering.</p>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-title">Software Engineering Team Lead</div>
+                    <div class="company">Pipeline Co., Ltd.</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> Aug 2025 - Present</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Lead a team of 8+ developers in designing and implementing microservice-based SaaS solutions in the Cybersecurity domain using Golang, Python, and AWS.</li>
+                            <li>Architected and implemented a scalable microservices architecture that improved system performance by 40% and reduced infrastructure costs by 30%.</li>
+                            <li>Established CI/CD pipelines using GitHub Actions and AWS CodePipeline, reducing deployment time from hours to minutes.</li>
+                            <li>Mentored junior developers through code reviews, pair programming, and technical workshops, improving team productivity by 25%.</li>
+                            <li>Collaborated with product managers and stakeholders to define technical requirements and project roadmaps.</li>
+                            <li>Implemented best practices for code quality, testing, and documentation, resulting in a 50% reduction in production bugs.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">Senior Software Engineer</div>
+                    <div class="company">Pipeline Co., Ltd.</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> Jan 2025 - Jul 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Developed and maintained microservices using Golang and Python for a cybersecurity platform serving 50,000+ users.</li>
+                            <li>Designed and implemented a real-time event processing system using Apache Kafka, handling 10,000+ events per second.</li>
+                            <li>Optimized database queries and implemented caching strategies, improving API response times by 60%.</li>
+                            <li>Led the migration of legacy monolith to microservices architecture, improving system scalability and maintainability.</li>
+                            <li>Implemented comprehensive unit and integration tests, increasing test coverage from 40% to 85%.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">Product Strategist</div>
+                    <div class="company">Pipeline Co., Ltd.</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> Dec 2022 - Oct 2024</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Spearheaded the development of a subscription-based SaaS Platform using Django and Django REST Framework, increasing company revenue by 35%.</li>
+                            <li>Architected and developed a Threat Intelligence Data Analysis solution with Machine Learning models, improving threat detection accuracy by 45%.</li>
+                            <li>Led the back-end development of an Enterprise-grade DNS Firewall Solution using Flask, Node.js, and PostgreSQL, serving 100+ enterprise clients.</li>
+                            <li>Managed Jira workflows and agile development processes, improving team velocity by 30%.</li>
+                            <li>Conducted R&D on cybersecurity frameworks including MISP Project, MITRE-ATT&CK, and MITRE-D3FEND.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="job-title">Lecturer and Student Advisor</div>
+                    <div class="company">Eastern University</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> Feb 2018 - Feb 2021</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Taught undergraduate courses in Algorithms, Data Structures, Software Engineering, and Database Management Systems.</li>
+                            <li>Supervised 15+ student capstone projects, providing guidance on software development methodologies and best practices.</li>
+                            <li>Developed course materials and hands-on lab exercises to enhance student learning experience.</li>
+                            <li>Served as a member of the curriculum development committee, updating course content to align with industry standards.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">Education</h2>
+                
+                <div class="education-item">
+                    <div class="degree">Master of Business Administration (MBA)</div>
+                    <div class="university">University of Dhaka</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> 2016 - 2019</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="education-details">
+                        <p>Specialization in International Business, including management, HRM, organizational behavior, and operational management. Completed thesis on "Strategic Management in Technology Startups."</p>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="degree">Bachelor of Science in Computer Science and Engineering</div>
+                    <div class="university">Bangladesh University of Engineering and Technology</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> 2009 - 2015</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
+                    </div>
+                    <div class="education-details">
+                        <p>Relevant Coursework: Data Structures, Algorithms, Database Systems, Computer Networks, Operating Systems, Software Engineering, Artificial Intelligence, Machine Learning, Computer Security.</p>
+                        <p>Thesis: "Anomaly Detection in Network Traffic Using Machine Learning Techniques"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Golang</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Bash/Shell</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Frameworks & Libraries</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Gin</span>
+                            <span class="skill-tag">Echo</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Elasticsearch</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Cloud & DevOps</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">NginX</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Cybersecurity</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Threat Intelligence</span>
+                            <span class="skill-tag">MISP Project</span>
+                            <span class="skill-tag">MITRE-ATT&CK</span>
+                            <span class="skill-tag">MITRE-D3FEND</span>
+                            <span class="skill-tag">DNS Security</span>
+                            <span class="skill-tag">Network Security</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Tools & Platforms</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Jira</span>
+                            <span class="skill-tag">Confluence</span>
+                            <span class="skill-tag">Apache Kafka</span>
+                            <span class="skill-tag">Apache Superset</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">Prometheus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">Certifications</h2>
+                <ul class="job-description">
+                    <li>AWS Certified Solutions Architect - Associate (2024)</li>
+                    <li>Certified Information Systems Security Professional (CISSP) - In Progress</li>
+                    <li>Certified Ethical Hacker (CEH) - 2023</li>
+                    <li>Google Cloud Professional Cloud Architect - 2022</li>
+                    <li>Docker Certified Associate (DCA) - 2021</li>
+                </ul>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">Projects</h2>
+                
+                <div class="project-item">
+                    <div class="project-title">Threat Intelligence Platform</div>
+                    <div class="project-role">Lead Developer</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> 2023 - Present</span>
+                    </div>
+                    <div class="project-description">
+                        <p>A comprehensive threat intelligence platform that aggregates, analyzes, and correlates security data from multiple sources to provide actionable intelligence.</p>
+                        <ul>
+                            <li>Built using Golang microservices with gRPC for inter-service communication</li>
+                            <li>Implemented real-time threat detection using machine learning models</li>
+                            <li>Integrated with MISP and other threat intelligence platforms</li>
+                            <li>Deployed on AWS EKS with auto-scaling capabilities</li>
+                        </ul>
+                        <p><strong>Technologies:</strong> Golang, Python, gRPC, Kubernetes, AWS, ML, MISP</p>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-title">Enterprise DNS Firewall</div>
+                    <div class="project-role">Backend Lead</div>
+                    <div class="date-location">
+                        <span><i class="far fa-calendar-alt"></i> 2022 - 2023</span>
+                    </div>
+                    <div class="project-description">
+                        <p>A high-performance DNS firewall solution for enterprise networks with advanced threat protection capabilities.</p>
+                        <ul>
+                            <li>Developed custom DNS server with threat detection capabilities</li>
+                            <li>Implemented real-time analytics and reporting dashboard</li>
+                            <li>Integrated with threat intelligence feeds for up-to-date protection</li>
+                            <li>Handled 10,000+ DNS queries per second with sub-millisecond latency</li>
+                        </ul>
+                        <p><strong>Technologies:</strong> Python, Flask, Node.js, PostgreSQL, Redis, NginX, DNS</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">Publications</h2>
+                <ul class="publications-list">
+                    <li class="publication-item">
+                        <div class="publication-title">Machine Learning Approaches for Network Anomaly Detection: A Comparative Study</div>
+                        <div class="publication-authors">Rahman, M.T., Ahmed, S., Islam, M.N.</div>
+                        <div class="publication-venue">Journal of Cybersecurity Research, 15(3), 45-62, 2023</div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-link"></i> DOI</a>
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </div>
+                    </li>
+                    <li class="publication-item">
+                        <div class="publication-title">Enhancing DNS Security with Machine Learning: A Case Study</div>
+                        <div class="publication-authors">Rahman, M.T., Khan, A.R.</div>
+                        <div class="publication-venue">Proceedings of the International Conference on Cybersecurity, pp. 123-135, 2022</div>
+                        <div class="publication-links">
+                            <a href="#"><i class="fas fa-link"></i> DOI</a>
+                            <a href="#"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">Languages</h2>
+                <ul class="languages-list">
+                    <li class="language-item">
+                        <span class="language-name">Bengali</span>
+                        <span class="language-level">Native</span>
+                    </li>
+                    <li class="language-item">
+                        <span class="language-name">English</span>
+                        <span class="language-level">Fluent</span>
+                    </li>
+                    <li class="language-item">
+                        <span class="language-name">Hindi</span>
+                        <span class="language-level">Conversational</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="cv-section">
+                <h2 class="section-title">References</h2>
+                <p>Available upon request.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Md. Towfiqur Rahman. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            // Toggle menu
+            navLinks.classList.toggle('active');
+            
+            // Animate links
+            links.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = '';
+                } else {
+                    link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+                }
+            });
+            
+            // Hamburger animation
+            hamburger.classList.toggle('toggle');
+        });
+
+        // Close mobile menu when clicking on a link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('toggle');
+            });
+        });
+
+        // Download as PDF
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin: 10,
+                filename: 'Md_Towfiqur_Rahman_CV.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Generate PDF
+            html2pdf().set(opt).from(element).save();
+        });
+    </script>
+</body>
+</html>

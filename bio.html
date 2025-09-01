@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio - Md. Towfiqur Rahman</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .bio-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        .bio-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .bio-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .bio-header p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .bio-content {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .main-content {
+            flex: 2;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .bio-section {
+            margin-bottom: 3rem;
+        }
+        
+        .bio-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .bio-section h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-bg);
+        }
+        
+        .bio-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .bio-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .bio-section li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.3rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .timeline-subtitle {
+            font-style: italic;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .fun-facts {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+        
+        .fun-facts h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .fun-facts ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .fun-facts li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .fun-facts li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .contact-card h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .bio-container {
+                margin: 80px 15px 30px;
+                padding: 1.5rem;
+            }
+            
+            .bio-content {
+                flex-direction: column;
+            }
+            
+            .bio-header h1 {
+                font-size: 2rem;
+            }
+            
+            .bio-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TR</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="bio.html" class="active">Bio</a></li>
+                <li><a href="notes.html">Notes</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="bio-container">
+        <div class="bio-header">
+            <h1>About Me</h1>
+            <p>Technology Leader | Cybersecurity Expert | Lifelong Learner</p>
+        </div>
+        
+        <div class="bio-content">
+            <div class="main-content">
+                <section class="bio-section">
+                    <h2>My Journey</h2>
+                    <p>Hello! I'm Md. Towfiqur Rahman, a passionate technology professional with over 8 years of experience in software development and cybersecurity. My journey in technology began with a deep curiosity about how things work, which led me to pursue a degree in Computer Science and Engineering from the prestigious Bangladesh University of Engineering and Technology (BUET).</p>
+                    
+                    <p>Over the years, I've had the privilege of working on diverse projects, from developing enterprise-grade security solutions to leading high-performing engineering teams. My work has taken me through various domains, including cybersecurity, cloud computing, and software architecture, allowing me to develop a well-rounded perspective on technology and its applications.</p>
+                    
+                    <p>What drives me is the opportunity to solve complex problems and create solutions that make a real impact. I'm particularly passionate about cybersecurity and the critical role it plays in our increasingly digital world.</p>
+                </section>
+                
+                <section class="bio-section">
+                    <h2>Professional Philosophy</h2>
+                    <p>I believe in a holistic approach to technology leadership that combines technical excellence with effective team collaboration. My professional philosophy is built on several core principles:</p>
+                    
+                    <ul>
+                        <li><strong>Continuous Learning:</strong> The technology landscape is constantly evolving, and I'm committed to staying at the forefront of industry trends and best practices.</li>
+                        <li><strong>Mentorship:</strong> I'm passionate about nurturing talent and helping team members grow both technically and professionally.</li>
+                        <li><strong>Security-First Mindset:</strong> In today's digital age, security can't be an afterthought. I advocate for building security into every stage of the development lifecycle.</li>
+                        <li><strong>Collaboration:</strong> The best solutions emerge from diverse perspectives working together towards a common goal.</li>
+                        <li><strong>Quality & Excellence:</strong> I'm committed to delivering high-quality solutions that meet both functional and non-functional requirements.</li>
+                    </ul>
+                </section>
+                
+                <section class="bio-section">
+                    <h2>Career Highlights</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-date">2025 - Present</span>
+                            <h3 class="timeline-title">Software Engineering Team Lead</h3>
+                            <span class="timeline-subtitle">Pipeline Co., Ltd.</span>
+                            <p>Leading a team of talented engineers in developing cutting-edge cybersecurity solutions. Responsible for architectural decisions, team mentorship, and driving technical excellence across projects.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="timeline-date">2022 - 2024</span>
+                            <h3 class="timeline-title">Product Strategist</h3>
+                            <span class="timeline-subtitle">Pipeline Co., Ltd.</span>
+                            <p>Led the development of multiple security products, including a threat intelligence platform and DNS firewall solution. Played a key role in product roadmap planning and technical strategy.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="timeline-date">2018 - 2021</span>
+                            <h3 class="timeline-title">Lecturer & Student Advisor</h3>
+                            <span class="timeline-subtitle">Eastern University</span>
+                            <p>Taught computer science courses and mentored students in their academic and professional development. Supervised capstone projects and contributed to curriculum development.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <span class="timeline-date">2015</span>
+                            <h3 class="timeline-title">Bachelor's in CSE</h3>
+                            <span class="timeline-subtitle">Bangladesh University of Engineering and Technology</span>
+                            <p>Graduated with a degree in Computer Science and Engineering, laying the foundation for my career in technology.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="bio-section">
+                    <h2>Technical Expertise</h2>
+                    <p>Throughout my career, I've developed expertise in various technologies and domains. Here are some of my core technical skills:</p>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1.2rem;">Programming & Development</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Golang</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">System Design</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1.2rem;">Cybersecurity</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Threat Intelligence</span>
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">MISP Project</span>
+                        <span class="skill-tag">MITRE-ATT&CK</span>
+                        <span class="skill-tag">DNS Security</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1.2rem;">Cloud & DevOps</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Terraform</span>
+                    </div>
+                </section>
+            </div>
+            
+            <div class="sidebar">
+                <div class="fun-facts">
+                    <h3>Fun Facts About Me</h3>
+                    <ul>
+                        <li>I'm an avid reader, especially enjoying books on technology, psychology, and philosophy.</li>
+                        <li>In my free time, I contribute to open-source projects and write technical blog posts.</li>
+                        <li>I'm passionate about knowledge sharing and have conducted numerous workshops and training sessions.</li>
+                        <li>I believe in the power of community and actively participate in tech meetups and conferences.</li>
+                        <li>When I'm not coding, you can find me hiking, playing chess, or exploring new cuisines.</li>
+                    </ul>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-links">
+                        <a href="mailto:your.email@example.com" class="contact-link">
+                            <i class="fas fa-envelope"></i> your.email@example.com
+                        </a>
+                        <a href="tel:+8801XXXXXXXXX" class="contact-link">
+                            <i class="fas fa-phone"></i> +8801XXXXXXXXX
+                        </a>
+                        <a href="#" target="_blank" class="contact-link">
+                            <i class="fab fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                        <a href="#" target="_blank" class="contact-link">
+                            <i class="fab fa-github"></i> GitHub Profile
+                        </a>
+                        <a href="#" target="_blank" class="contact-link">
+                            <i class="fab fa-twitter"></i> @yourtwitter
+                        </a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <a href="resume.html" class="cta-button" style="display: inline-block;">
+                        View My Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Md. Towfiqur Rahman. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
